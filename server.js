@@ -1,6 +1,7 @@
 import Express from "express";
 import path from "path";
 import database from "./modules/database.js";
+import routes from "./routes/routes.js";
 
 const __dirname = path.resolve();
 
@@ -12,7 +13,13 @@ app.listen(port, () => {
 });
 
 async function server() {
-    database();
+    try {
+        database();
+    } catch (error) {
+        
+    } finally {
+        routes(app);
+    }
 };
 
 server();
